@@ -1,0 +1,84 @@
+{% extends 'layout.html'%}
+{% block content %}
+{% block css %}
+<link rel="stylesheet" href="../static/plugins/bootstrap-datetimepicker-master/css/bootstrap-datetimepicker.css">
+{% endblock %}
+<!--新建员工-->
+<div>
+    <div class="container">
+        <!--面板里面套表单-->
+        <div class="panel panel-default">
+            <div class="panel-heading">新建员工</div>
+            <div class="panel-body">
+                <!--这是表单,,自己页面跳转自己页面需要在前面加上/,或者直接不写action-->
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label>姓名</label>
+                        <input type="text" class="form-control" placeholder="姓名" name="name">
+                    </div>
+
+                    <div class="form-group">
+                        <label>密码</label>
+                        <input type="text" class="form-control" placeholder="密码" name="password">
+                    </div>
+
+                    <div class="form-group">
+                        <label>年龄</label>
+                        <input type="text" class="form-control" placeholder="年龄" name="age">
+                    </div>
+
+                    <div class="form-group">
+                        <label>工资</label>
+                        <input type="text" class="form-control" placeholder="工资" name="salary">
+                    </div>
+
+                    <div class="form-group">
+                        <label>入职时间</label>
+                        <input id="bd" type="text" class="form-control" placeholder="入职时间" name="entry_time">
+                    </div>
+
+                    <div class="form-group">
+                        <label>性别</label>
+                        <select class="form-control" name="gender">
+                          {% for item in gender_choices%}
+                          <option value="{{item.0}}">{{item.1}}</option>
+                          {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>所属部门</label>
+                        <select class="form-control" name="staff_department_id">
+                            {% for item in department_list %}
+                          <option value="{{item.id}}">{{item.title}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">保存</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block js %}
+<script src="../static/plugins/bootstrap-datetimepicker-master/js/bootstrap-datetimepicker.js"></script>
+<script src="../static/plugins/bootstrap-datetimepicker-master/js/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+
+<script>
+    $(function(){
+
+    $("#bd").datetimepicker({
+        format: "yyyy-mm-dd",
+        showMeridian: true,
+        autoclose: true,
+        todayBtn: true,
+        language:"zh-CN"
+    });
+
+    })
+</script>
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends 'layout.html' %}
+{% block content %}
+<!--新建部门-->
+<div>
+    <div class="container">
+        <!--面板里面套表单-->
+        <div class="panel panel-default">
+            <div class="panel-heading">新建部门</div>
+            <div class="panel-body">
+                <!--这是表单,,自己页面跳转自己页面需要在前面加上/,或者直接不写action-->
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label>部门标题</label>
+                        <input type="text" name="title" class="form-control" placeholder="部门标题">
+                    </div>
+                    <button type="submit" class="btn btn-primary">保存</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

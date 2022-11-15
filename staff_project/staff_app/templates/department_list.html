@@ -1,0 +1,49 @@
+{% extends 'layout.html' %}
+{% block content %}
+<!--部门管理列表-->
+<div>
+    <div class="container">
+        <!--按钮区域-->
+        <div style="margin-bottom:10px;">
+            <a class="btn btn-success" href="/department_add">
+                <!--新建部门前有一个小图标-->
+                <span class="glyphicon glyphicon-plus" aria-hidden="true"> </span>
+                新建部门
+            </a>
+        </div>
+        <!--面板里面套表格-->
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <!--部门列表前有一个小图标-->
+                <span class="glyphicon glyphicon-align-justify" aria-hidden="true"> </span>
+                部门列表
+            </div>
+            <!--表格区域-->
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>部门名称</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for obj in data_list%}
+                <tr>
+                    <th scope="row">{{obj.id}}</th>
+                    <td>{{obj.title}}</td>
+                    <td>
+                        <a class="btn btn-primary btn-xs" href="/department_edit/{{ obj.id }}">编辑</a>
+                        <a class="btn btn-danger btn-xs" href="/department_delete/?nid={{ obj.id }}">删除</a>
+                    </td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <ul class="pagination">
+            {{page_string}}
+        </ul>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends 'layout.html' %}
+{% block content %}
+<div>
+    <div class="container">
+        <!--面板里面套表单-->
+        <div class="panel panel-default">
+            <div class="panel-heading">编辑员工</div>
+            <div class="panel-body">
+                <!--这是表单,,自己页面跳转自己页面需要在前面加上/,或者直接不写action-->
+                <!--novalidate关闭浏览器做的检验-->
+                <form method="post" novalidate>
+                    {% csrf_token %}
+                    {% for field in form %}
+                    <div class="form-group ">
+                        <label>{{field.label}}</label>
+                        {{ field }}
+                        <span style="color:red;">{{ field.errors.0 }}</span>
+                        <!--                        <input type="text" class="form-control" placeholder="姓名" name="name">-->
+                    </div>
+                    {% endfor %}
+                    <button type="submit" class="btn btn-primary">保存</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
